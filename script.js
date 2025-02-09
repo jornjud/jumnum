@@ -17,77 +17,75 @@ document.getElementById("principal").addEventListener("input", function() {
   }
 });
 
-// ... (ฟังก์ชัน calculateWeeks เหมือนเดิม) ...
+// ฟังก์ชัน calculateWeeks (เหมือนเดิม)
 function calculateWeeks() {
-  // รับค่าวันที่จากฟอร์ม
-  const startDateInput = document.getElementById("start-date").value;
-  const endDateInput = document.getElementById("end-date").value || flatpickr.formatDate(new Date(), "d/m/Y");
-  const amount = parseFloat(document.getElementById("amount").value);
+    // รับค่าวันที่จากฟอร์ม
+  const startDateInput = document.getElementById("start-date").value;
+  const endDateInput = document.getElementById("end-date").value || flatpickr.formatDate(new Date(), "d/m/Y");
+  const amount = parseFloat(document.getElementById("amount").value);
 
-  if (isNaN(amount) || !startDateInput) {
-    document.getElementById("result").textContent = "กรุณากรอกข้อมูลให้ครบถ้วน";
-    return;
-  }
+  if (isNaN(amount) || !startDateInput) {
+    document.getElementById("result").textContent = "กรุณากรอกข้อมูลให้ครบถ้วน";
+    return;
+  }
 
-  // แปลงค่าวันที่จากรูปแบบ dd/mm/yyyy เป็น Date object
-  const [startDay, startMonth, startYear] = startDateInput.split("/");
-  const [endDay, endMonth, endYear] = endDateInput.split("/");
+  // แปลงค่าวันที่จากรูปแบบ dd/mm/yyyy เป็น Date object
+  const [startDay, startMonth, startYear] = startDateInput.split("/");
+  const [endDay, endMonth, endYear] = endDateInput.split("/");
 
-  const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
-  const endDate = new Date(`${endYear}-${endMonth}-${endDay}`);
+  const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
+  const endDate = new Date(`${endYear}-${endMonth}-${endDay}`);
 
-  // ฟังก์ชันสำหรับแปลงวันที่เป็นรูปแบบ วัน/เดือน/ปี ภาษาไทย
-  function formatDateThai(date) {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    return date.toLocaleDateString('th-TH', options);
-  }
+    // ฟังก์ชันสำหรับแปลงวันที่เป็นรูปแบบ วัน/เดือน/ปี ภาษาไทย
+  function formatDateThai(date) {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return date.toLocaleDateString('th-TH', options);
+  }
 
-  let result = "";
-  let currentDate = new Date(startDate);
-  currentDate.setDate(currentDate.getDate() + 7);
-  let weekCount = 1;
+  let result = "";
+  let currentDate = new Date(startDate);
+  currentDate.setDate(currentDate.getDate() + 7);
+  let weekCount = 1;
 
-  while (currentDate <= endDate) {
-    result += `${formatDateThai(currentDate)} = สัปดาห์ ที่ ${weekCount}\n`;
-    currentDate.setDate(currentDate.getDate() + 7);
-    weekCount++;
-  }
+  while (currentDate <= endDate) {
+    result += `${formatDateThai(currentDate)} = สัปดาห์ ที่ ${weekCount}\n`;
+    currentDate.setDate(currentDate.getDate() + 7);
+    weekCount++;
+  }
 
-  let daysRemaining = Math.floor((endDate - (currentDate - 7 * 24 * 60 * 60 * 1000)) / (1000 * 60 * 60 * 24));
-  if (daysRemaining > 0 && daysRemaining < 7) {
-    result += `${formatDateThai(endDate)} = ${daysRemaining} วัน\n`;
-  }
+  let daysRemaining = Math.floor((endDate - (currentDate - 7 * 24 * 60 * 60 * 1000)) / (1000 * 60 * 60 * 24));
+  if (daysRemaining > 0 && daysRemaining < 7) {
+    result += `${formatDateThai(endDate)} = ${daysRemaining} วัน\n`;
+  }
 
-  let totalAmount = (weekCount - 1) * amount;
-  result += `\n${amount} x ${weekCount - 1} สัปดาห์ = ${totalAmount.toFixed(2)} บาท`;
+  let totalAmount = (weekCount - 1) * amount;
+  result += `\n${amount} x ${weekCount - 1} สัปดาห์ = ${totalAmount.toFixed(2)} บาท`;
 
-  if (daysRemaining > 0 && daysRemaining < 7) {
-    const dailyAmount = amount / 7;
-    const remainingAmount = dailyAmount * daysRemaining;
-    totalAmount += remainingAmount;
-    result += `\n(${amount} ÷ 7 วัน) x ${daysRemaining} วัน = ${remainingAmount.toFixed(2)} บาท`;
-  }
-  result += `\nรวมเป็นเงิน ${totalAmount.toFixed(2)} บาท`;
+  if (daysRemaining > 0 && daysRemaining < 7) {
+    const dailyAmount = amount / 7;
+    const remainingAmount = dailyAmount * daysRemaining;
+    totalAmount += remainingAmount;
+    result += `\n(${amount} ÷ 7 วัน) x ${daysRemaining} วัน = ${remainingAmount.toFixed(2)} บาท`;
+  }
+  result += `\nรวมเป็นเงิน ${totalAmount.toFixed(2)} บาท`;
 
-  document.getElementById("result").textContent = result;
+  document.getElementById("result").textContent = result;
 }
 
 // Array สำหรับเก็บข้อมูลจำนำ
 let pawnData = [];
 
 // ฟังก์ชันเพิ่มข้อมูลจำนำ
-function addPawnItem(customerName, brand, model, principal, interestRate, startDate, dueDate, pin, pattern) {
- // แก้ไข interestRate
+function addPawnItem(customerName, brand, model, principal, interest, startDate, dueDate, pin) {
   let pawnItem = {
     customerName: customerName,
     brand: brand,
     model: model,
     principal: principal,
-    interestRate: interestRate, // เก็บค่าดอกเบี้ย (บาท)
+    interestRate: interest, // เก็บค่าดอกเบี้ย (บาท)
     startDate: startDate,
     dueDate: dueDate,
     pin: pin,
-    pattern: pattern,
     timestamp: new Date() // บันทึกเวลา
   };
   pawnData.push(pawnItem);
@@ -119,59 +117,60 @@ function updateTable(item) {
   cell7.innerHTML = item.dueDate;
 }
 
+// --- เพิ่มส่วนนี้ (จัดการ dropdown ยี่ห้อ) ---
+document.getElementById('brand').addEventListener('change', function() {
+  const otherInput = document.getElementById('brand-other');
+  if (this.value === 'Other') {
+    otherInput.style.display = 'block';
+    otherInput.focus();
+  } else {
+    otherInput.style.display = 'none';
+  }
+});
+// ---
+
 // ฟังก์ชันเมื่อกดปุ่ม "บันทึก"
 function submitForm() {
-  // ดึงข้อมูลจาก form
+    // ดึงข้อมูลจาก form
   const customerName = document.getElementById("customer-name").value;
-  const brand = document.getElementById("brand").value;
+  let brand = document.getElementById("brand").value; // ใช้ let
   const model = document.getElementById("model").value;
   const principal = parseFloat(document.getElementById("principal").value);
-//   const interestRate = parseFloat(document.getElementById("interest-rate").value); // ไม่ต้องใช้แล้ว
   const startDate = document.getElementById("start-date").value;
   const endDate = document.getElementById("end-date").value;
   const pin = document.getElementById("pin").value;
-  const pattern = document.getElementById("pattern").value;
   const interest = parseFloat(document.getElementById("amount").value); // ดอกเบี้ยที่คำนวณแล้ว
 
+  // ถ้าเลือก "อื่นๆ" ใน dropdown, ให้ใช้ค่าจาก input field
+  if (brand === 'Other') {
+    brand = document.getElementById('brand-other').value;
+  }
 
-  // ตรวจสอบข้อมูล (validation - เพิ่มเติมได้ตามต้องการ)
+  // ตรวจสอบข้อมูล (validation)
   if (!customerName || !brand || !model || isNaN(principal) || !startDate) {
     alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     return;
   }
-    // --- Validation เพิ่มเติม ---
-    if (!/^[1-9]+$/.test(pattern)) { // ตรวจว่าเป็นตัวเลข 1-9 เท่านั้น
-      alert("รหัส Pattern ต้องเป็นตัวเลข 1-9 เท่านั้น");
-      return;
-    }
-    if (pattern.length < 4 || pattern.length > 9) {
-      alert("รหัส Pattern ต้องมีความยาว 4-9 ตัว");
-      return;
-    }
-    if (new Set(pattern).size !== pattern.length) { // เช็คว่าไม่มีตัวเลขซ้ำ
-      alert("รหัส Pattern ต้องไม่มีตัวเลขซ้ำ");
-      return;
-    }
-      // --- จบ Validation ---
 
-  // เรียกฟังก์ชันเพิ่มข้อมูล
-  addPawnItem(customerName, brand, model, principal, interest, startDate, endDate, pin, pattern);
+    // เรียกฟังก์ชันเพิ่มข้อมูล
+  addPawnItem(customerName, brand, model, principal, interest, startDate, endDate, pin);
 
   // ล้างค่าในฟอร์ม
   document.getElementById("customer-name").value = "";
   document.getElementById("brand").value = "";
+  document.getElementById('brand-other').value = "";
+  document.getElementById('brand-other').style.display = 'none'; // ซ่อน input "อื่นๆ"
   document.getElementById("model").value = "";
   document.getElementById("principal").value = "";
-  document.getElementById("amount").value = ""; //ดอกเบี้ย
+  document.getElementById("amount").value = "";
   document.getElementById("start-date").value = "";
   document.getElementById("end-date").value = "";
   document.getElementById("pin").value = "";
-  document.getElementById('pattern-preview').innerHTML = ''; // ล้าง preview
 }
 
-// ฟังก์ชันส่งข้อมูลไป Google Sheet
+// ฟังก์ชันส่งข้อมูลไป Google Sheet (เหมือนเดิม)
 function sendToGoogleSheet(item) {
-  const sheetUrl = 'YOUR_WEB_APP_URL'; // *** แทนที่ด้วย URL ของ Web app ***
+  const sheetUrl = 'https://script.google.com/macros/s/AKfycbyscE5X80XfCbcHKOEadaubNBjvMReETEOrjyXQTatXSZWBRiG1uoxlqmzJC13hALeS/exec'; // *** แทนที่ด้วย URL ของ Web app ***
 
   let formData = new FormData();
   for (let key in item) {
@@ -185,8 +184,10 @@ function sendToGoogleSheet(item) {
   .then(response => response.json())
   .then(data => {
     console.log('Data sent to Google Sheet:', data);
+     alert('บันทึกข้อมูลเรียบร้อยแล้ว');
   })
   .catch(error => {
     console.error('Error sending data to Google Sheet:', error);
+    alert('เกิดข้อผิดพลาดในการส่งข้อมูล: ' + error.message);
   });
 }

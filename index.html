@@ -33,9 +33,20 @@
         <input type="text" id="customer-name" name="customer-name">
       </div>
       <div class="grid-item">
-        <label for="brand">ยี่ห้อ:</label>
-        <input type="text" id="brand" name="brand">
-      </div>
+          <label for="brand">ยี่ห้อ:</label>
+          <select id="brand" name="brand">
+            <option value="Oppo">Oppo</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Vivo">Vivo</option>
+            <option value="Apple">Apple</option>
+            <option value="Xiaomi">Xiaomi</option>
+            <option value="Infinix">Infinix</option>
+            <option value="Realme">Realme</option>
+            <option value="Huawei">Huawei</option>
+            <option value="Other">อื่นๆ โปรดระบุ</option>
+          </select>
+          <input type="text" id="brand-other" name="brand-other" style="display: none;" placeholder="ระบุยี่ห้ออื่นๆ">
+        </div>
       <div class="grid-item">
         <label for="model">รุ่น:</label>
         <input type="text" id="model" name="model">
