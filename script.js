@@ -339,7 +339,8 @@ function submitForm() {
     }
 
     // เรียกฟังก์ชันเพิ่มข้อมูล
-    addPawnItem(customerName, brand, model, principal, interest, startDate, dueDate, pin); // dueDate ถูกส่งเข้าไปด้วย
+    // เรียก addPawnItem *พร้อมส่งสถานะเริ่มต้น*
+    addPawnItem(customerName, brand, model, principal, interest, startDate, dueDate, pin, "กำลังจำนำ"); // dueDate ถูกส่งเข้าไปด้วย
 
     // ล้างค่าในฟอร์ม
     document.getElementById("customer-name").value = "";
