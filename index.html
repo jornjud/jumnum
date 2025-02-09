@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบรับจำนำ</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h2>คำนวณดอกเบี้ยจำนำ</h2>
+
+    <label for="principal">เงินต้น:</label>
+    <input type="number" id="principal" min="0" step="0.01" placeholder="ใส่จำนวนเงินต้น">
+
+    <label for="amount">จำนวนดอกเบี้ย:</label>
+    <input type="number" id="amount" min="0" step="0.01" placeholder="ดอกเบี้ยจะคำนวณอัตโนมัติเมื่อใส่เงินต้น" readonly>
+
+    <label for="start-date">วันที่มาจำนำ:</label>
+    <input type="text" id="start-date" class="datepicker">
+
+    <label for="end-date">วันที่สิ้นสุด/หรือวันที่ปัจจุบัน:</label>
+    <input type="text" id="end-date" class="datepicker">
+
+    <button onclick="calculateWeeks()">คำนวณ</button>
+
+    <div id="result"></div>
+
+    <h2>บันทึกรายการจำนำ</h2>
+    <div class="grid-container">
+      <div class="grid-item">
+        <label for="customer-name">ชื่อลูกค้า:</label>
+        <input type="text" id="customer-name" name="customer-name">
+      </div>
+      <div class="grid-item">
+        <label for="brand">ยี่ห้อ:</label>
+        <input type="text" id="brand" name="brand">
+      </div>
+      <div class="grid-item">
+        <label for="model">รุ่น:</label>
+        <input type="text" id="model" name="model">
+      </div>
+      <div class="grid-item">
+        <label for="interest-rate">ดอกเบี้ย (%):</label>
+        <input type="number" id="interest-rate" name="interest-rate" value="14">
+      </div>
+      <div class="grid-item">
+        <label for="pin">รหัส PIN:</label>
+        <input type="password" id="pin" name="pin" maxlength="4">
+      </div>
+      <div class="grid-item">
+        <label for="pattern">รหัส Pattern:</label>
+        <input type="text" id="pattern" name="pattern">
+        <div id="pattern-preview"></div>
+      </div>
+    </div>
+
+    <button onclick="submitForm()">บันทึกรายการจำนำ</button>
+
+    <h2>รายการจำนำ</h2>
+    <table id="pawn-table">
+      <thead>
+        <tr>
+          <th>ชื่อลูกค้า</th>
+          <th>ยี่ห้อ</th>
+          <th>รุ่น</th>
+          <th>เงินต้น</th>
+          <th>ดอกเบี้ย</th>
+          <th>วันที่จำนำ</th>
+          <th>วันครบกำหนด</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/l10n/th.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
