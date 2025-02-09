@@ -5,6 +5,7 @@
   <title>ระบบรับจำนำ</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
   <div class="container">
@@ -59,7 +60,10 @@
 
     <button onclick="submitForm()">บันทึกรายการจำนำ</button>
 
-    <h2>รายการจำนำ</h2>
+      <h2>รายการจำนำ</h2>
+     <input type="text" id="search-input" placeholder="ค้นหา..." onkeyup="searchTable()">
+
+
     <table id="pawn-table">
       <thead>
         <tr>
@@ -70,13 +74,14 @@
           <th>ดอกเบี้ย</th>
           <th>วันที่จำนำ</th>
           <th>วันครบกำหนด</th>
-        </tr>
+          <th>สถานะ</th>  <th>จัดการ</th>  </tr>
       </thead>
       <tbody>
       </tbody>
     </table>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://npmcdn.com/flatpickr/dist/l10n/th.js"></script>
   <script src="script.js"></script>
