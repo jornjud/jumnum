@@ -132,30 +132,16 @@ function submitForm() {
   const startDate = document.getElementById("start-date").value;
   const endDate = document.getElementById("end-date").value;
   const pin = document.getElementById("pin").value;
-  const pattern = document.getElementById("pattern").value;
 
   // ตรวจสอบข้อมูล (validation - เพิ่มเติมได้ตามต้องการ)
   if (!customerName || !brand || !model || isNaN(principal) || isNaN(interestRate) || !startDate) {
     alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     return;
   }
-    // --- Validation เพิ่มเติม ---
-    if (!/^[1-9]+$/.test(pattern)) { // ตรวจว่าเป็นตัวเลข 1-9 เท่านั้น
-      alert("รหัส Pattern ต้องเป็นตัวเลข 1-9 เท่านั้น");
-      return;
-    }
-    if (pattern.length < 4 || pattern.length > 9) {
-      alert("รหัส Pattern ต้องมีความยาว 4-9 ตัว");
-      return;
-    }
-    if (new Set(pattern).size !== pattern.length) { // เช็คว่าไม่มีตัวเลขซ้ำ
-      alert("รหัส Pattern ต้องไม่มีตัวเลขซ้ำ");
-      return;
-    }
-      // --- จบ Validation ---
+
 
   // เรียกฟังก์ชันเพิ่มข้อมูล
-  addPawnItem(customerName, brand, model, principal, interestRate, startDate, endDate, pin, pattern);
+  addPawnItem(customerName, brand, model, principal, interestRate, startDate, endDate, pin);
 
   // ล้างค่าในฟอร์ม
   document.getElementById("customer-name").value = "";
@@ -166,8 +152,7 @@ function submitForm() {
   document.getElementById("start-date").value = "";
   document.getElementById("end-date").value = "";
   document.getElementById("pin").value = "";
-  document.getElementById("pattern").value = "";
-  document.getElementById('pattern-preview').innerHTML = ''; // ล้าง preview
+  
 }
 
 

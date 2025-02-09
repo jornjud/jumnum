@@ -98,25 +98,6 @@ button:hover {
   font-size: 16px;
 }
 
-#pattern-preview {
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-#pattern-preview div {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: black;
-  margin: 2px;
-}
-
 /* Table styles */
 table {
   width: 100%;
