@@ -1,203 +1,115 @@
-/* optimized-styles.css */
-
-/* ตั้งค่าเบื้องต้นให้ทุกองค์ประกอบรู้จักกัน */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
-/* เริ่มต้นด้วยร่างกายที่อบอุ่นและเป็นกันเอง */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
-  color: #333;
+  background-color: #f4f7fc;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   padding: 1rem;
 }
 
-/* กรงเก็บเนื้อหาที่เรียบง่ายและชัดเจน */
 .container {
   width: 100%;
   max-width: 800px;
-  padding: 1.5rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  margin: 0 auto;
 }
 
-/* หัวเรื่องที่เปล่งประกายแต่ไม่ดังจนเกินไป */
 h2 {
   font-size: 1.5rem;
-  color: #4CAF50;
+  text-align: center;
+  color: #007BFF;
   margin-bottom: 1rem;
 }
 
-/* ป้ายข้อความชัดเจนเหมือนเสียงกวี */
+/* การ์ดสวย ๆ */
+.card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+/* ปุ่ม */
+.btn {
+  width: 100%;
+  padding: 10px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+/* ปุ่มบันทึก */
+.save-btn {
+  background: #28a745;
+}
+
+.save-btn:hover {
+  background: #1e7e34;
+}
+
+/* ฟอร์ม */
+.form-group {
+  margin-bottom: 1rem;
+}
+
 label {
   display: block;
-  margin-bottom: 0.5rem;
   font-weight: bold;
-  color: #555;
-  text-align: left;
+  margin-bottom: 5px;
 }
 
-/* ช่องกรอกข้อมูลที่ใส่ใจในทุกสัมผัส */
-input[type="number"],
-input[type="text"],
-input[type="password"],
-.flatpickr-input,
+input,
 select {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-input:focus,
-select:focus {
-  border-color: #4CAF50;
-  outline: none;
-}
-
-/* ปุ่มที่กดได้ง่ายและนุ่มนวลดุจสัมผัสของดอกไม้ */
-button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-/* พื้นที่แสดงผลที่อบอุ่นและชัดเจน */
-#result {
-  margin-top: 1.25rem;
-  padding: 1rem;
-  background-color: #e8f5e9;
-  border-radius: 4px;
-  font-size: 1rem;
-  white-space: pre-wrap;
-  color: #2e7d32;
-  text-align: left;
-}
-
-/* กล่องแสดงรายการในรูปแบบ Grid ที่เรียงตัวสวยงาม */
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-}
-
-.grid-item {
-  padding: 0.75rem;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   font-size: 1rem;
 }
 
-/* ตารางข้อมูลที่ชัดเจนและจัดเรียงอย่างประณีต */
+/* ตาราง */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
 }
 
-table, th, td {
+th,
+td {
+  padding: 10px;
+  text-align: left;
   border: 1px solid #ccc;
 }
 
-th, td {
-  padding: 0.75rem;
-  text-align: left;
-}
-
 th {
-  background-color: #4CAF50;
-  color: #fff;
+  background: #007BFF;
+  color: white;
 }
 
-/* ช่องค้นหาที่ใช้งานง่าย */
-#search-input {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-/* ปุ่มแก้ไขและลบที่กระชับเหมือนคำสัมผัสของกลอน */
-.action-button {
-  padding: 0.5rem 1rem;
-  margin: 0.25rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #fff;
-  font-size: 0.9rem;
-}
-
-.edit-button {
-  background-color: #2196F3;
-}
-
-.delete-button {
-  background-color: #f44336;
-}
-
-/* สถานะต่าง ๆ เปล่งประกายในทุกอารมณ์ */
-.status-active {
-  color: green;
-  font-weight: bold;
-}
-
-.status-redeemed {
-  color: blue;
-  font-weight: bold;
-}
-
-.status-expired {
-  color: red;
-  font-weight: bold;
-}
-
-/* ปรับสไตล์สำหรับ SweetAlert2 ให้ข้อความชัดและเป็นระเบียบ */
-.swal2-popup {
-  text-align: left !important;
-}
-
-/* Media Query สำหรับอุปกรณ์ที่หน้าจอเล็ก สัมผัสเป็นเรื่องสำคัญ */
+/* Responsive */
 @media (max-width: 600px) {
-  .container {
-    padding: 1rem;
-  }
   h2 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
   }
-  input, button, select {
-    font-size: 1rem;
-  }
-}
-
-/* สำหรับหน้าจอเล็กกว่า 400px เพิ่มความกระชับให้ปุ่มสัมผัสสบาย */
-@media (max-width: 400px) {
-  button, .action-button {
-    padding: 0.5rem 1rem;
+  .btn {
     font-size: 0.9rem;
+  }
+  th,
+  td {
+    font-size: 0.85rem;
+    padding: 8px;
   }
 }

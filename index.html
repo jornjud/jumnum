@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ระบบรับจำนำ</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
   <div class="container">
-    <h2>คำนวณดอกเบี้ยจำนำ</h2>
+    <h2><i class="fas fa-coins"></i> คำนวณดอกเบี้ยจำนำ</h2>
 
-    <label for="principal">เงินต้น:</label>
-    <input type="number" id="principal" min="0" step="0.01" placeholder="ใส่จำนวนเงินต้น">
+    <div class="card">
+      <form>
+        <div class="form-group">
+          <label for="principal">💰 เงินต้น:</label>
+          <input type="number" id="principal" min="0" step="0.01" placeholder="ใส่จำนวนเงินต้น">
+        </div>
 
-    <label for="amount">จำนวนดอกเบี้ย:</label>
-    <input type="number" id="amount" min="0" step="0.01" placeholder="ดอกเบี้ยจะคำนวณอัตโนมัติเมื่อใส่เงินต้น" readonly>
+        <div class="form-group">
+          <label for="amount">💵 จำนวนดอกเบี้ย:</label>
+          <input type="number" id="amount" min="0" step="0.01" placeholder="ดอกเบี้ยคำนวณอัตโนมัติ" readonly>
+        </div>
 
-    <label for="start-date">วันที่มาจำนำ:</label>
-    <input type="text" id="start-date" class="datepicker">
+        <div class="form-group">
+          <label for="start-date">📅 วันที่มาจำนำ:</label>
+          <input type="text" id="start-date" class="datepicker">
+        </div>
 
-    <label for="end-date">วันที่สิ้นสุด/หรือวันที่ปัจจุบัน:</label>
-    <input type="text" id="end-date" class="datepicker">
+        <div class="form-group">
+          <label for="end-date">⏳ วันที่สิ้นสุด:</label>
+          <input type="text" id="end-date" class="datepicker">
+        </div>
 
-    <button onclick="calculateWeeks()">คำนวณ</button>
+        <button type="button" class="btn" onclick="calculateWeeks()">📊 คำนวณ</button>
+      </form>
+    </div>
 
-    <div id="result"></div>
+    <h2><i class="fas fa-file-invoice"></i> บันทึกรายการจำนำ</h2>
 
-    <h2>บันทึกรายการจำนำ</h2>
-    <div class="grid-container">
-      <div class="grid-item">
-        <label for="customer-name">ชื่อลูกค้า:</label>
-        <input type="text" id="customer-name" name="customer-name">
-      </div>
-      <div class="grid-item">
-          <label for="brand">ยี่ห้อ:</label>
-          <select id="brand" name="brand">
+    <div class="card">
+      <form>
+        <div class="form-group">
+          <label for="customer-name">👤 ชื่อลูกค้า:</label>
+          <input type="text" id="customer-name">
+        </div>
+
+        <div class="form-group">
+          <label for="brand">📱 ยี่ห้อ:</label>
+          <select id="brand">
             <option value="Oppo">Oppo</option>
             <option value="Samsung">Samsung</option>
             <option value="Vivo">Vivo</option>
@@ -46,42 +62,47 @@
             <option value="Huawei">Huawei</option>
             <option value="Other">อื่นๆ โปรดระบุ</option>
           </select>
-          <input type="text" id="brand-other" name="brand-other" style="display: none;" placeholder="ระบุยี่ห้ออื่นๆ">
+          </select>
         </div>
-      <div class="grid-item">
-        <label for="model">รุ่น:</label>
-        <input type="text" id="model" name="model">
-      </div>
-      <div class="grid-item">
-         <label for="pin">รหัส PIN:</label>
-        <input type="text" id="pin" name="pin" minlength="4" maxlength="16">
-      </div>
+
+        <div class="form-group">
+          <label for="model">📌 รุ่น:</label>
+          <input type="text" id="model">
+        </div>
+
+        <div class="form-group">
+          <label for="pin">🔐 รหัส PIN:</label>
+          <input type="password" id="pin" minlength="4" maxlength="16">
+        </div>
+
+        <button type="button" class="btn save-btn" onclick="submitForm()">💾 บันทึก</button>
+      </form>
     </div>
 
-    <button onclick="submitForm()">บันทึกรายการจำนำ</button>
+    <h2><i class="fas fa-list"></i> รายการจำนำ</h2>
 
-      <h2>รายการจำนำ</h2>
-
-
-    <table id="pawn-table">
-      <thead>
-        <tr>
-          <th>ชื่อลูกค้า</th>
-          <th>ยี่ห้อ</th>
-          <th>รุ่น</th>
-          <th>เงินต้น</th>
-          <th>ดอกเบี้ย</th>
-          <th>วันที่จำนำ</th>
-          <th>วันครบกำหนด</th>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
+    <div class="card">
+      <table id="pawn-table">
+        <thead>
+          <tr>
+            <th>ชื่อลูกค้า</th>
+            <th>ยี่ห้อ</th>
+            <th>รุ่น</th>
+            <th>เงินต้น</th>
+            <th>ดอกเบี้ย</th>
+            <th>วันที่จำนำ</th>
+            <th>วันครบกำหนด</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://npmcdn.com/flatpickr/dist/l10n/th.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>
