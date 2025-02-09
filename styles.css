@@ -1,142 +1,203 @@
-/* Reset and basic setup for a mobile-first design */
+/* optimized-styles.css */
+
+/* ตั้งค่าเบื้องต้นให้ทุกองค์ประกอบรู้จักกัน */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  --primary-color: #007BFF;
-  --secondary-color: #6c757d;
-  --success-color: #28a745;
-  --danger-color: #dc3545;
-  --background-color: #f8f9fa;
-  --text-color: #343a40;
-  --white: #ffffff;
-  --border-radius: 5px;
-  --transition-duration: 0.3s;
-}
-
+/* เริ่มต้นด้วยร่างกายที่อบอุ่นและเป็นกันเอง */
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.6;
-  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   padding: 1rem;
 }
 
+/* กรงเก็บเนื้อหาที่เรียบง่ายและชัดเจน */
 .container {
-  background-color: var(--white);
-  max-width: 800px;
   width: 100%;
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin: auto;
-}
-
-h2 {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
+  max-width: 800px;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
+  margin: 0 auto;
 }
 
+/* หัวเรื่องที่เปล่งประกายแต่ไม่ดังจนเกินไป */
+h2 {
+  font-size: 1.5rem;
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+/* ป้ายข้อความชัดเจนเหมือนเสียงกวี */
 label {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
   display: block;
-  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555;
+  text-align: left;
 }
 
-input[type="text"],
+/* ช่องกรอกข้อมูลที่ใส่ใจในทุกสัมผัส */
 input[type="number"],
+input[type="text"],
 input[type="password"],
+.flatpickr-input,
 select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ced4da;
-  border-radius: var(--border-radius);
+  border: 1px solid #ddd;
+  border-radius: 4px;
   font-size: 1rem;
   margin-bottom: 1rem;
-  transition: border-color var(--transition-duration);
+  transition: border-color 0.3s ease;
 }
 
 input:focus,
 select:focus {
-  border-color: var(--primary-color);
+  border-color: #4CAF50;
   outline: none;
 }
 
+/* ปุ่มที่กดได้ง่ายและนุ่มนวลดุจสัมผัสของดอกไม้ */
 button {
+  display: inline-block;
   padding: 0.75rem 1.5rem;
-  background-color: var(--primary-color);
+  background-color: #4CAF50;
+  color: #fff;
   border: none;
-  border-radius: var(--border-radius);
-  color: var(--white);
-  font-size: 1rem;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color var(--transition-duration), box-shadow var(--transition-duration);
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
 }
 
 button:hover {
-  background-color: #0056b3;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #45a049;
 }
 
+/* พื้นที่แสดงผลที่อบอุ่นและชัดเจน */
 #result {
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   padding: 1rem;
-  background-color: #e9ecef;
-  border-radius: var(--border-radius);
-  color: var(--text-color);
+  background-color: #e8f5e9;
+  border-radius: 4px;
+  font-size: 1rem;
   white-space: pre-wrap;
+  color: #2e7d32;
+  text-align: left;
 }
 
+/* กล่องแสดงรายการในรูปแบบ Grid ที่เรียงตัวสวยงาม */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .grid-item {
-  padding: 1rem;
-  background-color: var(--white);
-  border: 1px solid #dee2e6;
-  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  font-size: 1rem;
 }
 
+/* ตารางข้อมูลที่ชัดเจนและจัดเรียงอย่างประณีต */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
 }
 
 th, td {
   padding: 0.75rem;
-  border: 1px solid #dee2e6;
   text-align: left;
 }
 
 th {
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: #4CAF50;
+  color: #fff;
 }
 
+/* ช่องค้นหาที่ใช้งานง่าย */
+#search-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* ปุ่มแก้ไขและลบที่กระชับเหมือนคำสัมผัสของกลอน */
+.action-button {
+  padding: 0.5rem 1rem;
+  margin: 0.25rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.edit-button {
+  background-color: #2196F3;
+}
+
+.delete-button {
+  background-color: #f44336;
+}
+
+/* สถานะต่าง ๆ เปล่งประกายในทุกอารมณ์ */
+.status-active {
+  color: green;
+  font-weight: bold;
+}
+
+.status-redeemed {
+  color: blue;
+  font-weight: bold;
+}
+
+.status-expired {
+  color: red;
+  font-weight: bold;
+}
+
+/* ปรับสไตล์สำหรับ SweetAlert2 ให้ข้อความชัดและเป็นระเบียบ */
+.swal2-popup {
+  text-align: left !important;
+}
+
+/* Media Query สำหรับอุปกรณ์ที่หน้าจอเล็ก สัมผัสเป็นเรื่องสำคัญ */
 @media (max-width: 600px) {
   .container {
-    padding: 1.5rem;
+    padding: 1rem;
   }
   h2 {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
   }
-  button {
-    font-size: 0.9rem;
+  input, button, select {
+    font-size: 1rem;
+  }
+}
+
+/* สำหรับหน้าจอเล็กกว่า 400px เพิ่มความกระชับให้ปุ่มสัมผัสสบาย */
+@media (max-width: 400px) {
+  button, .action-button {
     padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 }
