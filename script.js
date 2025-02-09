@@ -131,6 +131,20 @@ function submitForm() {
   const pin = document.getElementById("pin").value;
   const pattern = document.getElementById("pattern").value;
 
+  // --- Validation เพิ่มเติม ---
+  if (!/^[1-9]+$/.test(pattern)) { // ตรวจว่าเป็นตัวเลข 1-9 เท่านั้น
+    alert("รหัส Pattern ต้องเป็นตัวเลข 1-9 เท่านั้น");
+    return;
+  }
+  if (pattern.length < 4 || pattern.length > 9) {
+    alert("รหัส Pattern ต้องมีความยาว 4-9 ตัว");
+    return;
+  }
+  if (new Set(pattern).size !== pattern.length) { // เช็คว่าไม่มีตัวเลขซ้ำ
+    alert("รหัส Pattern ต้องไม่มีตัวเลขซ้ำ");
+    return;
+  }
+  
   // ตรวจสอบข้อมูล (validation - เพิ่มเติมได้ตามต้องการ)
   if (!customerName || !brand || !model || isNaN(principal) || isNaN(interestRate) || !startDate) {
     alert("กรุณากรอกข้อมูลให้ครบถ้วน");
@@ -168,7 +182,7 @@ document.getElementById('pattern').addEventListener('input', function() {
 
 // ฟังก์ชันส่งข้อมูลไป Google Sheet
 function sendToGoogleSheet(item) {
-  const sheetUrl = 'https://script.google.com/macros/s/AKfycbyE5QBJdbIKQqENpDzEHWEGxBJcQ9V5l4srZCh_fPvvf9x2c2ltkBFMVfWRMinujSFd/exec'; // *** แทนที่ด้วย URL ของ Web app ***
+  const sheetUrl = 'https://script.google.com/macros/s/AKfycbwppUtFyEyJCJR3An1u_ZkaVvi27tevSCzkWJEQRtUJv3bhFXBopq2fcTQDnyECQpv7/exec'; // *** แทนที่ด้วย URL ของ Web app ***
 
   let formData = new FormData();
   for (let key in item) {
