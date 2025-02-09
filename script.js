@@ -159,7 +159,7 @@ function submitForm() {
 
 // ฟังก์ชันส่งข้อมูลไป Google Sheet
 function sendToGoogleSheet(item) {
-  const sheetUrl = 'https://script.google.com/macros/s/AKfycbxEDCmJgIeYRzFoVuGjJqGXBdhotz68ub9zafM0UnYNhToq061B7Fr7xC3bCpYBSuKA/exec'; // *** แทนที่ด้วย URL ของ Web app ***
+  const sheetUrl = 'https://script.google.com/macros/s/AKfycbyeJVocipOfXc3E6wFU8JXaQoU7oAw2Rxm_wDWOU2N-6cgOI6bvaOCa6Wg57v3O0N0x/exec'; // *** แทนที่ด้วย URL ของ Web app ***
 
   let formData = new FormData();
   for (let key in item) {
