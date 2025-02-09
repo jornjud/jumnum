@@ -174,7 +174,7 @@ function submitForm() {
 
 // ฟังก์ชันส่งข้อมูลไป Google Sheet
 function sendToGoogleSheet(item) {
-  const sheetUrl = 'YOUR_WEB_APP_URL'; // *** แทนที่ด้วย URL ของ Web app ***
+  const sheetUrl = 'https://script.google.com/macros/s/AKfycbwppUtFyEyJCJR3An1u_ZkaVvi27tevSCzkWJEQRtUJv3bhFXBopq2fcTQDnyECQpv7/exec'; // *** แทนที่ด้วย URL ของ Web app ***
 
   let formData = new FormData();
   for (let key in item) {
