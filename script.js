@@ -19,6 +19,7 @@ document.getElementById("principal").addEventListener("input", function() {
 
 // คำนวณสัปดาห์ (ตามโค้ดเดิมของคุณ)
 function calculateWeeks() {
+  // ... (โค้ดเดิมจาก function calculateWeeks ทั้งหมด) ...
     // รับค่าวันที่จากฟอร์ม
   const startDateInput = document.getElementById("start-date").value;
   const endDateInput = document.getElementById("end-date").value || flatpickr.formatDate(new Date(), "d/m/Y");
@@ -36,11 +37,12 @@ function calculateWeeks() {
   const startDate = new Date(`${startYear}-${startMonth}-${startDay}`);
   const endDate = new Date(`${endYear}-${endMonth}-${endDay}`);
 
-  // ฟังก์ชันสำหรับแปลงวันที่เป็นรูปแบบ วัน/เดือน/ปี ภาษาไทย
+      // ฟังก์ชันสำหรับแปลงวันที่เป็นรูปแบบ วัน/เดือน/ปี ภาษาไทย
   function formatDateThai(date) {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return date.toLocaleDateString('th-TH', options);
   }
+
 
   let result = "";
   let currentDate = new Date(startDate);
@@ -70,6 +72,7 @@ function calculateWeeks() {
   result += `\nรวมเป็นเงิน ${totalAmount.toFixed(2)} บาท`;
 
   document.getElementById("result").textContent = result;
+
 }
 
 // Array สำหรับเก็บข้อมูลจำนำ
@@ -131,25 +134,25 @@ function submitForm() {
   const pin = document.getElementById("pin").value;
   const pattern = document.getElementById("pattern").value;
 
-  // --- Validation เพิ่มเติม ---
-  if (!/^[1-9]+$/.test(pattern)) { // ตรวจว่าเป็นตัวเลข 1-9 เท่านั้น
-    alert("รหัส Pattern ต้องเป็นตัวเลข 1-9 เท่านั้น");
-    return;
-  }
-  if (pattern.length < 4 || pattern.length > 9) {
-    alert("รหัส Pattern ต้องมีความยาว 4-9 ตัว");
-    return;
-  }
-  if (new Set(pattern).size !== pattern.length) { // เช็คว่าไม่มีตัวเลขซ้ำ
-    alert("รหัส Pattern ต้องไม่มีตัวเลขซ้ำ");
-    return;
-  }
-  
   // ตรวจสอบข้อมูล (validation - เพิ่มเติมได้ตามต้องการ)
   if (!customerName || !brand || !model || isNaN(principal) || isNaN(interestRate) || !startDate) {
     alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     return;
   }
+    // --- Validation เพิ่มเติม ---
+    if (!/^[1-9]+$/.test(pattern)) { // ตรวจว่าเป็นตัวเลข 1-9 เท่านั้น
+      alert("รหัส Pattern ต้องเป็นตัวเลข 1-9 เท่านั้น");
+      return;
+    }
+    if (pattern.length < 4 || pattern.length > 9) {
+      alert("รหัส Pattern ต้องมีความยาว 4-9 ตัว");
+      return;
+    }
+    if (new Set(pattern).size !== pattern.length) { // เช็คว่าไม่มีตัวเลขซ้ำ
+      alert("รหัส Pattern ต้องไม่มีตัวเลขซ้ำ");
+      return;
+    }
+      // --- จบ Validation ---
 
   // เรียกฟังก์ชันเพิ่มข้อมูล
   addPawnItem(customerName, brand, model, principal, interestRate, startDate, endDate, pin, pattern);
@@ -167,22 +170,11 @@ function submitForm() {
   document.getElementById('pattern-preview').innerHTML = ''; // ล้าง preview
 }
 
-// แสดงตัวอย่าง pattern (ง่ายๆ)
-document.getElementById('pattern').addEventListener('input', function() {
-  let pattern = this.value;
-  let preview = document.getElementById('pattern-preview');
-  preview.innerHTML = ''; // ล้างค่าเก่า
 
-  // วาด pattern (ตัวอย่างง่ายๆ)
-  for (let i = 0; i < pattern.length; i++) {
-    let dot = document.createElement('div');
-    preview.appendChild(dot); // เพิ่ม dot ลงใน preview
-  }
-});
 
 // ฟังก์ชันส่งข้อมูลไป Google Sheet
 function sendToGoogleSheet(item) {
-  const sheetUrl = 'https://script.google.com/macros/s/AKfycbwppUtFyEyJCJR3An1u_ZkaVvi27tevSCzkWJEQRtUJv3bhFXBopq2fcTQDnyECQpv7/exec'; // *** แทนที่ด้วย URL ของ Web app ***
+  const sheetUrl = 'YOUR_WEB_APP_URL'; // *** แทนที่ด้วย URL ของ Web app ***
 
   let formData = new FormData();
   for (let key in item) {
